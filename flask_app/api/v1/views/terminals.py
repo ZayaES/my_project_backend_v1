@@ -3,6 +3,7 @@
 from api.v1.views import views
 from flask import jsonify
 from flask_httpauth import HTTPBasicAuth
+from werkzeug.exceptions import Unauthorized
 
 auth = HTTPBasicAuth()
 
@@ -33,7 +34,7 @@ def verify_password(username, passwd):
 
 @views.route('/terminals')
 def all_terminals():
-    return terminal
+    return jsonify(terminal)
 
 
 @views.route('/pterminals')
@@ -43,3 +44,9 @@ def all_pterminals():
                         'ptst': 'roadrun',
                         'merchant': 'spar'})
     return (pterminals)
+
+@views.errorhandler(Unauthorized)
+def handle_unauthorized(error):
+    print('error')
+    return jsonify({'error': 'You no get permission, boss',
+                    'status_code': 404})
