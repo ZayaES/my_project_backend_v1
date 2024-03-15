@@ -34,7 +34,7 @@ def verify_password(username, passwd):
 
 @views.route('/terminals')
 def all_terminals():
-    return jsonify(terminal)
+    return jsonify(terminals)
 
 
 @views.route('/pterminals')

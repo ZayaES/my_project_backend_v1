@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import sys
-sys.path.append('/home/zaya/my_project_backend_v1/flask_app')
+sys.path.append('/home/ubuntu/my_project_backend_v1/flask_app')
 from werkzeug.exceptions import Unauthorized
 from flask import Flask, make_response, jsonify
 from api.v1.views import views
