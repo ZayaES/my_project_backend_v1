@@ -1,5 +1,4 @@
-users = [{'username': 'zaya',
+admins = [{'username': 'zaya',
             'passwd': 'tutu'},
         {'username': 'joseph',
             'passwd': 'josh'}]
-

@@ -1,12 +1,23 @@
 #!/usr/bin/python3
 import sys
-sys.path.append('/home/ubuntu/my_project_backend_v1/flask_app')
+import os
+
+
+current_directory = os.path.dirname(os.path.abspath(__file__))
+parent_directory = os.path.dirname(current_directory)
+parent_directory = os.path.dirname(parent_directory)
+print(parent_directory)
+path_to_config = os.path.join(current_directory, '.gitgnore', 'config.json')
+sys.path.append(parent_directory)
 from werkzeug.exceptions import Unauthorized
 from flask import Flask, make_response, jsonify
 from api.v1.views import views
+from api.v1.utils import read_json
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+app.config.update(read_json(path_to_config))
+app.secret_key = app.config['SECRET_KEY']
 app.url_map.strict_slashes = False
 
 @app.errorhandler(401)
@@ -23,7 +34,7 @@ def not_found(error):
       404:
         description: a resource was not found
     """
-    return make_response(jsonify({'error': "Not found"}), 404)
+    return make_response(jsonify({'error': "you dey look for wetin no dey here oh. check your spelling, boss"}), 404)
 
 @views.route('/')
 def hello():

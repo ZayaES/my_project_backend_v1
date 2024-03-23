@@ -1,0 +1,10 @@
+[{"username": "zaya",
+	"passwd": "tutu",
+	"jurisdiction": "All",
+	"clearance_level": 10},
+
+{"username": "joseph",
+	"passwd": "josh", 
+	"jurisdiction": "Lagos",
+	"clearance_level": 8}
+]

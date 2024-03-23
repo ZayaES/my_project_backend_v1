@@ -1,52 +1,34 @@
 #!/usr/bin/python3
 
+import os
 from api.v1.views import views
 from flask import jsonify
-from flask_httpauth import HTTPBasicAuth
-from werkzeug.exceptions import Unauthorized
+from api.v1.authents import *
+from api.v1.utils import *
 
-auth = HTTPBasicAuth()
+current_directory = os.path.dirname(os.path.abspath(__file__))
+parent_directory = os.path.dirname(current_directory)
+path_to_terminals = os.path.join(parent_directory, 'files_storage', 'terminals.json')
 
-users = [{'username': 'zaya',
-            'passwd': 'tutu'},
-        {'username': 'joseph',
-            'passwd': 'josh'}]
-
-terminals = [{'terminal_id': '12345',
-                'ptst': 'posman',
-                'merchant':'shoprite'},
-            {'terminal_id': '54321',
-                'ptst': 'roadrun',
-                'merchant': 'uber'},
-            {'terminal_id': '02468',
-                'ptst': 'posman',
-                'merchant': 'spar'}]
-
-pterminals = terminals
-
-
-@auth.verify_password
-def verify_password(username, passwd):
-    for user in users:
-        if user['username'] == username and user['passwd'] == passwd:
-            return True
-    return False
 
 @views.route('/terminals')
 def all_terminals():
-    return jsonify(terminals)
+    agents = read_json("/home/zaya/my_project_backend_v1/flask_app/api/v1/files_storage/terminals.json")
+    return agents
 
 
 @views.route('/pterminals')
 @auth.login_required
 def all_pterminals():
-    pterminals.append({'terminal_id': '97531',
+    """    pterminals.append({'terminal_id': '97531',
                         'ptst': 'roadrun',
-                        'merchant': 'spar'})
-    return (pterminals)
+                        'merchant': 'spar'})"""
+    return ("perminssion allowdd")
 
-@views.errorhandler(Unauthorized)
-def handle_unauthorized(error):
-    print('error')
-    return jsonify({'error': 'You no get permission, boss',
-                    'status_code': 404})
+@views.route('/terminals/<string:id>')
+@auth.login_required
+def terminal(id):
+    for terminal in terminals:
+        if terminal['terminal_id'] == id:
+            return jsonify(terminal)
+    return(jsonify({'error': 'terminal not found'}))
