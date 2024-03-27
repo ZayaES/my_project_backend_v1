@@ -1,0 +1,90 @@
+[
+ {
+  "Terminal_ID": "2076VA10",
+  "Merchant_ID": "00051919",
+  "Merchant_name": "Shopleft, Surulere",
+  "Region": "LAGOS",
+  "Last_seen": "21\/03\/2024 04:00:00",
+  "Status": "Active"
+ },
+ {
+  "Terminal_ID": "4821ZX47",
+  "Merchant_ID": "00029846",
+  "Merchant_name": "Shopleft, Mushin",
+  "Region": "LAGOS",
+  "Last_seen": "22\/06\/2024 16:00:00",
+  "Status": "Active"
+ },
+ {
+  "Terminal_ID": "9026NR55",
+  "Merchant_ID": "00037195",
+  "Merchant_name": "Shopleft, Mafoluku",
+  "Region": "LAGOS",
+  "Last_seen": "21\/03\/2024 21:00:00",
+  "Status": "Active"
+ },
+ {
+  "Terminal_ID": "3340BB51",
+  "Merchant_ID": "00091728",
+  "Merchant_name": "SPAR, Tejuosho",
+  "Region": "LAGOS",
+  "Last_seen": "20\/03\/2021 00:00:00",
+  "Status": "Inative"
+ },
+ {
+  "Terminal_ID": "3340BB52",
+  "Merchant_ID": "00091729",
+  "Merchant_name": "SPAR, Harvey Road",
+  "Region": "LAGOS",
+  "Last_seen": "21\/03\/2024 12:00:00",
+  "Status": "Active"
+ },
+ {
+  "Terminal_ID": "1209BN53",
+  "Merchant_ID": "00037690",
+  "Merchant_name": "Addmore Pharmacy, Mushin",
+  "Region": "LAGOS",
+  "Last_seen": "21\/03\/2024 04:00:00",
+  "Status": "Active"
+ },
+ {
+  "Terminal_ID": "9931MY23",
+  "Merchant_ID": "00037691",
+  "Merchant_name": "Addmore Pharmacy, Mushin",
+  "Region": "LAGOS",
+  "Last_seen": "21\/03\/2024 14:00:00",
+  "Status": "Active"
+ },
+ {
+  "Terminal_ID": "4718LQ39",
+  "Merchant_ID": "00037692",
+  "Merchant_name": "Addmore Pharmacy, Surulere",
+  "Region": "LAGOS",
+  "Last_seen": "21\/03\/2024 13:07:00",
+  "Status": "Active"
+ },
+ {
+  "Terminal_ID": "8453RV09",
+  "Merchant_ID": "00037693",
+  "Merchant_name": "Addmore Pharmacy, Surulere",
+  "Region": "LAGOS",
+  "Last_seen": "09\/03\/2022 16:00:00",
+  "Status": "Inactive"
+ },
+ {
+  "Terminal_ID": "1987XW32",
+  "Merchant_ID": "00037694",
+  "Merchant_name": "Addmore Pharmacy, Yaba ",
+  "Region": "LAGOS",
+  "Last_seen": "21\/03\/2024 22:45:00",
+  "Status": "Active"
+ },
+ {
+  "Terminal_ID": "4883LD06",
+  "Merchant_ID": "00037695",
+  "Merchant_name": "Addmore Pharmacy, Yaba ",
+  "Region": "LAGOS",
+  "Last_seen": "21\/03\/2024 19:35:00",
+  "Status": "Active"
+ }
+]

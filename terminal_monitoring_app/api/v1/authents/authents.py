@@ -67,9 +67,13 @@ def login():
 @views.route('/logout', methods=['POST'])
 @login_required
 def logout():
+    response = Response()
     # Clear session variables to log the user out
-    session.pop('username', None)
-    return jsonify({'message': 'Logout successful'}), 200
+    session.clear()
+    #print(request.cookie)
+    response.set_cookie('session', '', expires=0)
+    response = make_response(jsonify({'message': 'Logout successful'}), 200)
+    return response
 
 
 @views.errorhandler(Unauthorized)

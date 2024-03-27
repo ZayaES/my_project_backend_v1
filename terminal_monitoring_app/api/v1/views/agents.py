@@ -21,7 +21,7 @@ def agents_by_counts(count):
 
 
 @views.route('/agents/<string:unq_field>')
-@auth.login_required
+@login_required
 def agent_by_code(unq_field):
     agents = read_json(path_to_agents)
     if (len(unq_field) < 11):

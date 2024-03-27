@@ -12,23 +12,19 @@ path_to_terminals = os.path.join(parent_directory, 'files_storage', 'terminals.j
 
 
 @views.route('/terminals')
+@login_required
 def all_terminals():
-    agents = read_json("/home/zaya/my_project_backend_v1/flask_app/api/v1/files_storage/terminals.json")
-    return agents
+    count = request.args.get('count', 20, type=int)
+    offset = request.args.get('offset', 0, type=int)
+    terminals = read_json(path_to_terminals)
+    return terminals[offset:offset + count]
 
-
-@views.route('/pterminals')
-@auth.login_required
-def all_pterminals():
-    """    pterminals.append({'terminal_id': '97531',
-                        'ptst': 'roadrun',
-                        'merchant': 'spar'})"""
-    return ("perminssion allowdd")
 
 @views.route('/terminals/<string:id>')
-@auth.login_required
+@login_required
 def terminal(id):
+    terminals = read_json(path_to_terminals)
     for terminal in terminals:
         if terminal['terminal_id'] == id:
             return jsonify(terminal)
-    return(jsonify({'error': 'terminal not found'}))
+    return(jsonify({'error': 'terminal with id {} not found'.format(id)}))
