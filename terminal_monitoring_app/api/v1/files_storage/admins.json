@@ -1,10 +1,12 @@
 [{"username": "zaya",
-	"passwd": "tutu",
+	"password": "tutu",
 	"jurisdiction": "All",
 	"clearance_level": 10},
-
 {"username": "joseph",
-	"passwd": "josh", 
+	"password": "josh",
 	"jurisdiction": "Lagos",
-	"clearance_level": 8}
+	"clearance_level": 8},
+{"username": "lucy",
+    "password": "lucyforreal",
+    "clearance_level": 10}
 ]

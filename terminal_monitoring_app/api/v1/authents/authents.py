@@ -5,7 +5,7 @@ from api.v1.views import views
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.exceptions import Unauthorized
 from api.v1.utils import read_json
-from flask import Flask, request, jsonify, session
+from flask import Flask, request, jsonify, session, Response, make_response
 from functools import wraps
 
 
@@ -39,10 +39,10 @@ def login_required(f):
 
 
 @auth.verify_password
-def verify_password(username, passwd):
+def verify_password(username, password):
     admins = read_json(path_to_admins)
     for admin in admins:
-        if admin['username'] == username and admin['passwd'] == passwd:
+        if admin['username'] == username and admin['password'] == password:
             return username
 
 @views.route('/login', methods=['POST'])
@@ -52,23 +52,23 @@ def login():
                  result (access given or granted) and role
     """
 
-    data = request.json
-    username = data.get('username')
-    password =data.get('password')
+    data = request.form
+    username = data['username']
+    password =data['password']
     admins = read_json(path_to_admins)
     for admin in admins:
-        if (admin['username'] == username and admin['passwd'] == password):
+        if (admin['username'] == username and admin['password'] == password):
             session['logged_in'] = True
             session['username'] = username
-            return jsonify({"result": admin})
+            return jsonify({"result": admin}), 200
         else:
-            return jsonify({"result": "login unsuccessful"})
+            continue
+    return jsonify({"result": "login unsuccessful"}), 401
 
 @views.route('/logout', methods=['POST'])
 @login_required
 def logout():
     response = Response()
-    # Clear session variables to log the user out
     session.clear()
     #print(request.cookie)
     response.set_cookie('session', '', expires=0)

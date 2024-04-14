@@ -1,6 +1,15 @@
 #!/usr/bin/python3
 
 import os
+
+import sys
+current_directory = os.path.dirname(os.path.abspath(__file__))
+parent_directory = os.path.dirname(current_directory)
+parent_directory = os.path.dirname(parent_directory)
+parent_directory = os.path.dirname(parent_directory)
+print(parent_directory)
+sys.path.append(parent_directory)
+
 from api.v1.views import views
 from api.v1.utils import *
 from api.v1.authents import *
@@ -32,7 +41,29 @@ def transaction_by_code(reference):
     return jsonify({"error": "no transaction with reference number {}".format(reference)}), 404
 
 
-@views.route('/transactions/role/<string:role>')
+@views.route('/transactions/countbydate=<string:date>')
+#@login_required
+def transaction_count_by_date(date):
+    transactions = read_json(path_to_transactions)
+    count = 0
+    for transaction in transactions:
+        if (transaction['Date Logged'].split(' ')[0] == date):
+            count += 1
+    return str(count)
+
+
+@views.route('/transactions/countbystatus=<string:status>')
+@login_required
+def transaction_count_by_status(status):
+    transactions = read_json(path_to_transactions)
+    count = 0
+    for transaction in transactions:
+        if (transaction['Status'].lower() == status):
+            count += 1
+    return str(count)
+
+
+@views.route('/transactions/role=<string:role>')
 @login_required
 def transaction_by_role(role):
     count = request.args.get('count', 10, type=int)
@@ -57,3 +88,7 @@ def transaction_by_role(role):
         return role_transactions[offset:offset + count]
     else:
         return jsonify({"error": "no role {} found".format(role)}), 404
+
+if __name__ == "__main__":
+    print(transaction_count_by_status('unsuccessful'))
+    print(transaction_count_by_status('successful'))

@@ -19,6 +19,21 @@ def all_terminals():
     terminals = read_json(path_to_terminals)
     return terminals[offset:offset + count]
 
+@views.route('terminals/total')
+@login_required
+def number_of_total_terminals():
+    return str(len(read_json(path_to_terminals)))
+
+@views.route('terminals/countbystatus=<string:status>')
+@login_required
+def number_of_active_terminals(status):
+    terminals = read_json(path_to_terminals)
+    number = 0
+    for terminal in terminals:
+        if terminal['Status'].lower() == status:
+            number += 1
+    return str(number)
+
 
 @views.route('/terminals/<string:id>')
 @login_required

@@ -1,6 +1,9 @@
-#!/usr/bin/python3
+#!/home/zaya/.local/bin/python
+"""#!/usr/bin/python3"""
+
 import sys
 import os
+from flask_cors import CORS
 
 
 current_directory = os.path.dirname(os.path.abspath(__file__))
@@ -15,6 +18,7 @@ from api.v1.views import views
 from api.v1.utils import read_json
 
 app = Flask(__name__)
+CORS(app)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.config.update(read_json(path_to_config))
 app.secret_key = app.config['SECRET_KEY']
@@ -43,4 +47,4 @@ def hello():
 app.register_blueprint(views)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=True)
